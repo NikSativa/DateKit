@@ -71,7 +71,7 @@ public extension DateFormat {
 }
 
 public extension DateFormat.th {
-    static var allTestCases: [DateFormat] = [
+    static let allTestCases: [DateFormat] = [
         .th.default,
         .th.dayOfTheWeek,
         .th.timeShortWith(separator: " * "),

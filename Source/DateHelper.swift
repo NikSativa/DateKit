@@ -102,3 +102,7 @@ public extension DateHelper {
         return str
     }
 }
+
+#if swift(>=6.0)
+extension DateHelper: @unchecked Sendable {}
+#endif

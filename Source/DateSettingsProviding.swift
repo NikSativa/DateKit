@@ -23,3 +23,7 @@ internal struct DateSettingsProvider: DateSettingsProviding {
         return .current
     }
 }
+
+#if swift(>=6.0)
+extension DateSettingsProvider: Sendable {}
+#endif

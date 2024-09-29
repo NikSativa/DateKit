@@ -48,3 +48,7 @@ extension DateFormat: CustomDebugStringConvertible {
         return debugDisplayNames.joined(separator: ", ")
     }
 }
+
+#if swift(>=6.0)
+extension DateFormat: Sendable {}
+#endif

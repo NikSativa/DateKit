@@ -15,7 +15,7 @@ let package = Package(
         .library(name: "DateKit", targets: ["DateKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "2.2.3"))
+        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "3.0.0"))
     ],
     targets: [
         .target(name: "DateKit",
@@ -23,21 +23,11 @@ let package = Package(
                 ],
                 path: "Source",
                 resources: [
-                    .copy("../PrivacyInfo.xcprivacy")
-                ]),
-        .target(name: "DateKitTestHelpers",
-                dependencies: [
-                    "DateKit",
-                    "SpryKit"
-                ],
-                path: "TestHelpers",
-                resources: [
-                    .copy("../PrivacyInfo.xcprivacy")
+                    .process("PrivacyInfo.xcprivacy")
                 ]),
         .testTarget(name: "DateKitTests",
                     dependencies: [
                         "DateKit",
-                        "DateKitTestHelpers",
                         "SpryKit"
                     ],
                     path: "Tests")

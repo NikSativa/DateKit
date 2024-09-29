@@ -120,3 +120,7 @@ extension DateComponent: ExpressibleByStringLiteral {
         self = .t(value)
     }
 }
+
+#if swift(>=6.0)
+extension DateComponent: Sendable {}
+#endif
