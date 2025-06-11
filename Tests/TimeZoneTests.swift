@@ -1,7 +1,6 @@
+import DateKit
 import Foundation
 import XCTest
-
-import DateKit
 
 final class TimeZoneTests: XCTestCase {
     func testUTC() {

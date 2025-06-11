@@ -1,6 +1,5 @@
 import Foundation
 import XCTest
-
 @testable import DateKit
 
 final class DateSettingsProviderTests: XCTestCase {

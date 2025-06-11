@@ -1,8 +1,7 @@
+import DateKit
 import Foundation
 import SpryKit
 import XCTest
-
-import DateKit
 
 final class DateTimeConverterTests: DateTestCase {
     func testDHShortcut() {
@@ -34,7 +33,9 @@ final class DateTimeConverterTests: DateTestCase {
         let description = [
             DateFormat.th.isoWithoutFractionalSeconds.asString,
             actual
-        ].compactMap { $0 }.joined(separator: " - ")
+        ]
+            .compactMap { $0 }
+            .joined(separator: " - ")
 
         XCTAssertEqual(subject.date(withFormat: .th.isoWithoutFractionalSeconds, from: actual, isUTC: false), expected, description)
         XCTAssertNotEqual(subject.date(withFormat: .th.isoWithFractionalSeconds, from: actual, isUTC: false), expected, description)
@@ -47,7 +48,9 @@ final class DateTimeConverterTests: DateTestCase {
         let description = [
             DateFormat.th.isoWithFractionalSeconds.asString,
             actual
-        ].compactMap { $0 }.joined(separator: " - ")
+        ]
+            .compactMap { $0 }
+            .joined(separator: " - ")
 
         let expectedUTC = Date.mock()
         XCTAssertEqual(subject.date(withFormat: .th.isoWithFractionalSeconds, from: actual, isUTC: true), expectedUTC, description)
@@ -68,45 +71,59 @@ final class DateTimeConverterTests: DateTestCase {
             case .th.default:
                 actual = "16 June 2023"
                 expected = .spry.testMake(year: 2023, month: 6, day: 16)
+
             case .th.dayOfTheWeek:
                 actual = "Friday, 16 June 2023"
                 expected = .spry.testMake(year: 2023, month: 6, day: 16)
+
             case .th.timeFullWith(separator: " * "):
                 actual = "June 16 2023 * 03:49 PM"
                 expected = .mock()
+
             case .th.timeShortWith(separator: " * "):
                 actual = "Jun 16 2023 * 03:49 PM"
                 expected = .mock()
+
             case .th.server:
                 actual = "2023-06-16T15:49:00.000Z"
                 expected = .mock()
+
             case .th.MMMddEEE:
                 actual = "Jun 16, Fri"
                 expected = .spry.testMake(year: 2000, month: 6, day: 16)
+
             case .th.monthShort:
                 actual = "Jun"
                 expected = .spry.testMake(year: 2000, month: 6, day: 1)
+
             case .th.dayOfMonth1:
                 actual = "16"
                 expected = .spry.testMake(year: 2000, month: 1, day: 16)
+
             case .th.dayOfMonth2:
                 actual = "16"
                 expected = .spry.testMake(year: 2000, month: 1, day: 16)
+
             case .th.time24h:
                 actual = "16"
                 expected = .spry.testMake(year: 2000, month: 1, day: 1, hour: 16)
+
             case .th.time24hAndMinutes:
                 actual = "16:30"
                 expected = .spry.testMake(year: 2000, month: 1, day: 1, hour: 16, minute: 30)
+
             case .th.time12h:
                 actual = "6 AM"
                 expected = .spry.testMake(year: 2000, month: 1, day: 1, hour: 6)
+
             case .th.time12hAndMinutes:
                 actual = "6:30 AM"
                 expected = .spry.testMake(year: 2000, month: 1, day: 1, hour: 6, minute: 30)
+
             case .th.numericDateWith(separator: "-"):
                 actual = "2023-06-16"
                 expected = .spry.testMake(year: 2023, month: 6, day: 16)
+
             default:
                 XCTFail(humanName(for: format) + " - " + format.asString)
                 return
@@ -116,7 +133,9 @@ final class DateTimeConverterTests: DateTestCase {
                 humanName(for: format),
                 format.asString,
                 actual
-            ].compactMap { $0 }.joined(separator: " - ")
+            ]
+                .compactMap { $0 }
+                .joined(separator: " - ")
 
             XCTAssertEqual(subject.date(withFormat: format, from: actual, isUTC: false), expected, description)
         }
@@ -132,45 +151,59 @@ final class DateTimeConverterTests: DateTestCase {
             case .th.default:
                 actual = "16 June 2023"
                 expected = "2023-06-16T00:00:00.000Z"
+
             case .th.dayOfTheWeek:
                 actual = "Friday, 16 June 2023"
                 expected = "2023-06-16T00:00:00.000Z"
+
             case .th.timeFullWith(separator: " * "):
                 actual = "June 16 2023 * 03:49 PM"
                 expected = "2023-06-16T15:49:00.000Z"
+
             case .th.timeShortWith(separator: " * "):
                 actual = "Jun 16 2023 * 03:49 PM"
                 expected = "2023-06-16T15:49:00.000Z"
+
             case .th.server:
                 actual = "2023-06-16T15:49:00.000Z"
                 expected = "2023-06-16T15:49:00.000Z"
+
             case .th.MMMddEEE:
                 actual = "Jun 16, Fri"
                 expected = "2000-06-16T00:00:00.000Z"
+
             case .th.monthShort:
                 actual = "Jun"
                 expected = "2000-06-01T00:00:00.000Z"
+
             case .th.dayOfMonth1:
                 actual = "16"
                 expected = "2000-01-16T00:00:00.000Z"
+
             case .th.dayOfMonth2:
                 actual = "16"
                 expected = "2000-01-16T00:00:00.000Z"
+
             case .th.time24h:
                 actual = "16:00"
                 expected = nil
+
             case .th.time24hAndMinutes:
                 actual = "16:30"
                 expected = "2000-01-01T16:30:00.000Z"
+
             case .th.time12h:
                 actual = "6 AM"
                 expected = "2000-01-01T06:00:00.000Z"
+
             case .th.time12hAndMinutes:
                 actual = "6:30 AM"
                 expected = "2000-01-01T06:30:00.000Z"
+
             case .th.numericDateWith(separator: "-"):
                 actual = "2023-06-16"
                 expected = "2023-06-16T00:00:00.000Z"
+
             default:
                 XCTFail(humanName(for: format) + " - " + format.asString)
                 return
@@ -180,7 +213,9 @@ final class DateTimeConverterTests: DateTestCase {
                 humanName(for: format),
                 format.asString,
                 actual
-            ].compactMap { $0 }.joined(separator: " - ")
+            ]
+                .compactMap { $0 }
+                .joined(separator: " - ")
 
             XCTAssertEqual(subject.convert(stringDate: actual,
                                            from: format,

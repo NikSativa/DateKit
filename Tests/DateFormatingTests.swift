@@ -1,7 +1,6 @@
+import DateKit
 import Foundation
 import XCTest
-
-import DateKit
 
 final class DateFormatingTests: XCTestCase {
     func testUTC() {

@@ -86,7 +86,8 @@ final class DateComponentTests: DateTestCase {
                 "expected: " + $0.element.expected,
                 "actual: " + actualValues[$0.offset]
             ].joined(separator: ", ")
-        }.joined(separator: "\n"))
+        }
+        .joined(separator: "\n"))
     }
 
     func testDesciptions() {

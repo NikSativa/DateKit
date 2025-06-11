@@ -1,7 +1,6 @@
+import DateKit
 import Foundation
 import XCTest
-
-import DateKit
 
 final class DateExtTests: DateTestCase {
     func testUTCStringWithFormat() {
@@ -46,7 +45,9 @@ final class DateExtTests: DateTestCase {
             let description = [
                 humanName(for: format),
                 format.asString
-            ].compactMap { $0 }.joined(separator: " - ")
+            ]
+                .compactMap { $0 }
+                .joined(separator: " - ")
 
             XCTAssertEqual(subject.string(withFormat: format, from: date, isUTC: true), expectation, description)
         }
@@ -95,7 +96,9 @@ final class DateExtTests: DateTestCase {
             let description = [
                 humanName(for: format),
                 format.asString
-            ].compactMap { $0 }.joined(separator: " - ")
+            ]
+                .compactMap { $0 }
+                .joined(separator: " - ")
 
             XCTAssertEqual(subject.string(withFormat: format, from: date, isUTC: false), localExpectation, description)
         }
